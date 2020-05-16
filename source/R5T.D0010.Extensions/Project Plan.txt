@@ -1,0 +1,4 @@
+R5T.D0010.Extensions - An extensions library for IMessageSink and related services.
+
+Goals
+
