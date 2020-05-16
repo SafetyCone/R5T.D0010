@@ -1,0 +1,4 @@
+R5T.D0010.Base - A base definitions library for IMessageSink and related services.
+
+Goals
+
