@@ -8,6 +8,13 @@ namespace R5T.D0010
 {
     public static class IMessageSinkExtensions
     {
+        public static Task AddMessageAsync(this IMessageSink messageSink, DateTime timestampUtc, MessageType messageType, string message)
+        {
+            var messageObject = Message.New(timestampUtc, messageType, message);
+
+            return messageSink.AddMessageAsync(messageObject);
+        }
+
         public static Task AddErrorMessageAsync(this IMessageSink messageSink, DateTime timestampUtc, string errorMessage)
         {
             var message = Message.NewError(timestampUtc, errorMessage);

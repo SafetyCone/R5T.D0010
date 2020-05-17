@@ -9,6 +9,6 @@ namespace R5T.D0010
 {
     public interface IMessageSource
     {
-        Task<IEnumerable<Message>> GetMessagesAsync();
+        Task<IEnumerable<Message>> GetMessagesAsync(Func<Message, bool> predicate);
     }
 }
