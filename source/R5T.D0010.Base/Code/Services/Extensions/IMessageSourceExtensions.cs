@@ -11,12 +11,12 @@ namespace R5T.D0010
     {
         public static Task<IEnumerable<Message>> GetAllMessagesAsync(this IMessageRepository messageRepository)
         {
-            return messageRepository.GetMessagesAsync(x => true);
+            return messageRepository.GetAllAsync(x => true);
         }
 
         public static Task< IEnumerable<Message>> GetErrorsAsync(this IMessageRepository messageRepository)
         {
-            return messageRepository.GetMessagesAsync(x => x.MessageType == MessageType.Error);
+            return messageRepository.GetAllAsync(x => x.MessageType == MessageType.Error);
         }
     }
 }
