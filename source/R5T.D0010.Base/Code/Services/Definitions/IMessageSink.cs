@@ -8,6 +8,6 @@ namespace R5T.D0010
 {
     public interface IMessageSink
     {
-        Task AddMessageAsync(Message message);
+        Task AddAsync(Message message);
     }
 }

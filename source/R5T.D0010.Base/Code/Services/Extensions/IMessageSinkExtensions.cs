@@ -12,14 +12,14 @@ namespace R5T.D0010
         {
             var messageObject = Message.New(timestampUtc, messageType, message);
 
-            return messageSink.AddMessageAsync(messageObject);
+            return messageSink.AddAsync(messageObject);
         }
 
         public static Task AddErrorMessageAsync(this IMessageSink messageSink, DateTime timestampUtc, string errorMessage)
         {
             var message = Message.NewError(timestampUtc, errorMessage);
 
-            var task = messageSink.AddMessageAsync(message);
+            var task = messageSink.AddAsync(message);
             return task;
         }
 
@@ -27,7 +27,7 @@ namespace R5T.D0010
         {
             var message = Message.NewOutput(timestampUtc, outputMessage);
 
-            var task = messageSink.AddMessageAsync(message);
+            var task = messageSink.AddAsync(message);
             return task;
         }
     }
