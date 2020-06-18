@@ -27,7 +27,7 @@ namespace R5T.D0010.Default
             var messagesToClear = this.Messages
                 .Where(predicate);
 
-            this.Messages.RemoveAll(messagesToClear);
+            this.Messages.RemoveRange(messagesToClear);
 
             return Task.CompletedTask;
         }
