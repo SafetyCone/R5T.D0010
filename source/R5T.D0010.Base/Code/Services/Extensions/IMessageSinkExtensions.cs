@@ -30,5 +30,11 @@ namespace R5T.D0010
             var task = messageSink.AddAsync(message);
             return task;
         }
+
+        public static Task CopyFromAsync(this IMessageSink messageSink, IMessageRepository messageRepository)
+        {
+            var task = messageRepository.CopyToAsync(messageSink);
+            return task;
+        }
     }
 }
