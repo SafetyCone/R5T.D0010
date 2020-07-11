@@ -75,6 +75,23 @@ namespace R5T.D0010.Default
             return serviceAction;
         }
 
+        public static (
+            IServiceAction<IMessageSink> messageSinkAction,
+            IServiceAction<IMessageFormatter> messageFormatterAction)
+            AddConsoleMessageSinkAction(this IServiceCollection services)
+        {
+            // 0.
+            var messageFormatterAction = services.AddMessageFormatterAction();
+
+            // 1.
+            var messageSinkAction = services.AddConsoleMessageSinkAction(
+                messageFormatterAction);
+
+            return (
+                messageSinkAction,
+                messageFormatterAction);
+        }
+
         /// <summary>
         /// Adds the <see cref="InMemoryMessageRepository"/> implementation of <see cref="IMessageRepository"/> as a <see cref="ServiceLifetime.Singleton"/>.
         /// </summary>
