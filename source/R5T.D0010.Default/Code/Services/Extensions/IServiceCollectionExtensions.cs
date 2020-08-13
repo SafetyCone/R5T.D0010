@@ -76,8 +76,8 @@ namespace R5T.D0010.Default
         }
 
         public static (
-            IServiceAction<IMessageSink> messageSinkAction,
-            IServiceAction<IMessageFormatter> messageFormatterAction)
+            IServiceAction<IMessageSink> Main,
+            IServiceAction<IMessageFormatter> MessageFormatterAction)
             AddConsoleMessageSinkAction(this IServiceCollection services)
         {
             // 0.
