@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,13 +7,16 @@ using R5T.T0001;
 
 using R5T.Lombardy;
 
+using R5T.T0064;
+
 
 namespace R5T.D0010.Default
 {
     /// <summary>
     /// * Manual construction recommended (not DI).
     /// </summary>
-    public class CompositeMessageSink : IMessageSink
+    [ServiceImplementationMarker]
+    public class CompositeMessageSink : IMessageSink, IServiceImplementation
     {
         #region Static
 
@@ -25,7 +28,7 @@ namespace R5T.D0010.Default
                 new IFormattedMessageSink[]
                 {
                     new ConsoleFormattedMessageSink(),
-                    new FileFormattedMessageSink(stringlyTypedPathOperator, messagesOutputFilePath)
+                    new FileFormattedMessageSink(messagesOutputFilePath, stringlyTypedPathOperator)
                 });
 
             return compositeMessageRepository;
@@ -42,7 +45,7 @@ namespace R5T.D0010.Default
                 new IFormattedMessageSink[]
                 {
                     new ConsoleFormattedMessageSink(),
-                    new FileFormattedMessageSink(stringlyTypedPathOperator, messagesOutputFilePath)
+                    new FileFormattedMessageSink(messagesOutputFilePath, stringlyTypedPathOperator)
                 });
 
             return compositeMessageRepository;
@@ -58,14 +61,20 @@ namespace R5T.D0010.Default
         private List<IFormattedMessageSink> ComponentFormattedMessageSinks { get; } = new List<IFormattedMessageSink>();
 
 
-        public CompositeMessageSink(IMessageFormatter messageFormatter, IEnumerable<IMessageSink> componentMessageSinks, IEnumerable<IFormattedMessageSink> componentFormattedMessageSinks)
+        [ServiceImplementationConstructorMarker]
+        public CompositeMessageSink(
+            IMessageFormatter messageFormatter,
+            IEnumerable<IMessageSink> componentMessageSinks,
+            IEnumerable<IFormattedMessageSink> componentFormattedMessageSinks)
         {
             this.MessageFormatter = messageFormatter;
             this.ComponentMessageSinks.AddRange(componentMessageSinks);
             this.ComponentFormattedMessageSinks.AddRange(componentFormattedMessageSinks);
         }
 
-        public CompositeMessageSink(IMessageFormatter messageFormatter, IEnumerable<IMessageSink> componentMessageSinks)
+        public CompositeMessageSink(
+            IMessageFormatter messageFormatter,
+            IEnumerable<IMessageSink> componentMessageSinks)
             : this(messageFormatter, componentMessageSinks, Enumerable.Empty<IFormattedMessageSink>())
         {
 

@@ -1,14 +1,14 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 using R5T.T0001;
 
-using R5T.Magyar.Extensions;
+using R5T.Magyar.Extensions;using R5T.T0064;
 
 
 namespace R5T.D0010.Default
-{
-    public class MessageFormatter : IMessageFormatter
+{[ServiceImplementationMarker]
+    public class MessageFormatter : IMessageFormatter,IServiceImplementation
     {
         #region Static
 

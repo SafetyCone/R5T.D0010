@@ -1,16 +1,16 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 using R5T.T0001;
 
-using R5T.Magyar.Extensions;
+using R5T.Magyar.Extensions;using R5T.T0064;
 
 
 namespace R5T.D0010.Default
-{
-    public class InMemoryMessageRepository : IMessageRepository
+{[ServiceImplementationMarker]
+    public class InMemoryMessageRepository : IMessageRepository,IServiceImplementation
     {
         private List<Message> Messages { get; } = new List<Message>();
 

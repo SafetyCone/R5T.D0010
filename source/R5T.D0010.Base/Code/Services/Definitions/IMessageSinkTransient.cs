@@ -1,9 +1,12 @@
 ﻿using System;
 
+using R5T.T0064;
+
 
 namespace R5T.D0010
 {
-    public interface IMessageSinkTransient : IMessageSink
+    [ServiceDefinitionMarker]
+    public interface IMessageSinkTransient : IMessageSink, IServiceDefinition
     {
     }
 }

@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
-using R5T.T0001;
+using R5T.T0001;using R5T.T0064;
 
 
 namespace R5T.D0010.Default
-{
-    public class ConsoleMessageSink : IMessageSink
+{[ServiceImplementationMarker]
+    public class ConsoleMessageSink : IMessageSink,IServiceImplementation
     {
         private IMessageFormatter MessageFormatter { get; }
 

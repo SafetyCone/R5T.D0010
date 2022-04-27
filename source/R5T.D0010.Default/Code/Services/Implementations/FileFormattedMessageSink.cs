@@ -1,9 +1,11 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
 using R5T.Lombardy;
 using R5T.Magyar.IO;
+
+using R5T.T0064;
 
 
 namespace R5T.D0010.Default
@@ -11,12 +13,15 @@ namespace R5T.D0010.Default
     /// <summary>
     /// * Manual construction intended (not DI).
     /// </summary>
-    public class FileFormattedMessageSink : IFormattedMessageSink
+    [ServiceImplementationMarker]
+    public class FileFormattedMessageSink : IFormattedMessageSink, IServiceImplementation
     {
         private string MessagesOutputFilePath { get; }
 
 
-        public FileFormattedMessageSink(IStringlyTypedPathOperator stringlyTypedPathOperator, string messagesOutputFilePath)
+        public FileFormattedMessageSink(
+            [NotServiceComponent] string messagesOutputFilePath,
+            IStringlyTypedPathOperator stringlyTypedPathOperator)
         {
             // Create the directory if it does not exist.
             var messagesOutputDirectoryPath = stringlyTypedPathOperator.GetDirectoryPathForFilePath(messagesOutputFilePath);
