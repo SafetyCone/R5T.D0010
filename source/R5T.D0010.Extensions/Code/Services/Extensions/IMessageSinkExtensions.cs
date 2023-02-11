@@ -11,7 +11,7 @@ namespace R5T.D0010
     {
         public static async Task AddMessageAsync(this IMessageSink messageSink, INowUtcProvider nowUtcProvider, MessageType messageType, string message)
         {
-            var timestampUtc = await nowUtcProvider.GetNowUtcAsync();
+            var timestampUtc = await nowUtcProvider.GetNowUtc();
 
             await messageSink.AddMessageAsync(timestampUtc, messageType, message);
         }
